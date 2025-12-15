@@ -1,4 +1,4 @@
-from src.database import initialise_database, insert_task, get_all_tasks
+from src.database import initialise_database, insert_task, get_all_tasks, mark_task_completed, delete_task
 from src.models import Task
 
 def main():
@@ -9,7 +9,10 @@ def main():
         print("\n--- Student Task Manager ---")
         print("1. View tasks")
         print("2. Add task")
-        print("3. Exit")
+        print("3. Mark task as completed")
+        print("4. Delete task")
+        print("5. Exit")
+
 
         choice = input("Choose an option: ").strip()
 
@@ -29,8 +32,19 @@ def main():
             new_task = Task(title=title, deadline=deadline, priority=priority)
             insert_task(new_task)
             print("Task added!")
-
+        
         elif choice == "3":
+            task_id = int(input("Enter task ID to mark as completed: "))
+            mark_task_completed(task_id)
+            print("Task marked as completed.")
+
+        elif choice == "4":
+            task_id = int(input("Enter task ID to delete: "))
+            delete_task(task_id)
+            print("Task deleted.")
+
+
+        elif choice == "5":
             print("Goodbye!")
             break
 

@@ -57,3 +57,24 @@ def get_all_tasks():
 
     return tasks
 
+def mark_task_completed(task_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE tasks
+        SET completed = 1
+        WHERE id = ?
+    """, (task_id,))
+
+    conn.commit()
+    conn.close()
+
+def delete_task(task_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+
+    conn.commit()
+    conn.close()
