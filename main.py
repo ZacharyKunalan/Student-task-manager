@@ -6,15 +6,5 @@ def main():
     initialise_database()
     print("Database initialised successfully.")
 
-    # Temporary test task (we'll remove this later)
-    task = Task(
-        title="Test task",
-        deadline="2025-01-20",
-        priority=1
-    )
-
-    insert_task(task)
-    print("Test task added to database.")
-
 if __name__ == "__main__":
     main()
