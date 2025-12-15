@@ -1,4 +1,6 @@
 import sqlite3
+from src.models import Task
+
 
 DB_NAME = "tasks.db"
 
@@ -38,3 +40,20 @@ def insert_task(task):
 
     conn.commit()
     conn.close()
+
+def get_all_tasks():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT id, title, deadline, priority, completed FROM tasks")
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    tasks = []
+    for row in rows:
+        task_id, title, deadline, priority, completed = row
+        tasks.append(Task(title, deadline, priority, bool(completed), task_id))
+
+    return tasks
+

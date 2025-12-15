@@ -8,4 +8,4 @@ class Task:
 
     def __str__(self):
         status = "✔" if self.completed else "✘"
-        return f"{self.title} | Due: {self.deadline} | Priority: {self.priority} | {status}"
+        return f"[{self.id}] {self.title} | Due: {self.deadline} | Priority: {self.priority} | {status}"
