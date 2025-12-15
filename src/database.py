@@ -21,3 +21,20 @@ def initialise_database():
 
     conn.commit()
     conn.close()
+
+def insert_task(task):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO tasks (title, deadline, priority, completed)
+        VALUES (?, ?, ?, ?)
+    """, (
+        task.title,
+        task.deadline,
+        task.priority,
+        int(task.completed)
+    ))
+
+    conn.commit()
+    conn.close()
